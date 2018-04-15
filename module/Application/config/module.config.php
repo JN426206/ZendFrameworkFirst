@@ -68,6 +68,10 @@ return [
                 'label' => 'Blog',
                 'route' => 'blog',
             ],
+            [
+                'label' => 'Logowanie',
+                'route' => 'auth',
+            ],
         ],
     ],
     'controllers' => [
