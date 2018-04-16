@@ -36,8 +36,12 @@ class AuthController extends AbstractActionController
             return ['form' => $form];
         }
         
-        $auth->exchangeArray($form->getData());
-        $this->table->saveAuth($auth);
+        echo $form->get('userName')->getValue();
+        
+        $row = $this->table->getAuthPassByUserName($form->get('userName')->getValue());
+        
+        if($row != null)
+            print_r($row);
         
         $viewModel = new ViewModel();
         $viewModel->setVariable('loged', true);

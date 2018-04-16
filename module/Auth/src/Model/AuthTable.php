@@ -22,6 +22,17 @@ class AuthTable
         return $this->tableGateway->select();
     }
     
+    public function getAuthPassByUserName($userName)
+    {        
+        $rowset = $this->tableGateway->select(['userName' => $userName]);
+        $row = $rowset->current();
+        if (! $row) {
+            return null;
+        }
+        
+        return $row;
+    }
+    
     public function getAuth($id)
     {
         $id = (int) $id;
