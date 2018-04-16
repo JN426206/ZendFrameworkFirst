@@ -2,15 +2,8 @@
 namespace Auth;
 
 use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
-    
-    'controllers' => [
-        'factories' => [
-            Controller\AuthController::class => InvokableFactory::class,
-        ],
-    ],
     
     'router' => [
         'routes' => [

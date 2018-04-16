@@ -16,7 +16,7 @@ class Module implements ConfigProviderInterface
         return [
             'factories' => [
                 Model\AuthTable::class => function($container) {
-                    $tableGateway = $container->get(Model\AlbumTableGateway::class);
+                    $tableGateway = $container->get(Model\AuthTableGateway::class);
                     return new Model\AuthTable($tableGateway);
                 },
                 Model\AuthTableGateway::class => function ($container) {
@@ -24,6 +24,18 @@ class Module implements ConfigProviderInterface
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Model\Auth());
                     return new TableGateway('auth', $dbAdapter, null, $resultSetPrototype);
+                },
+                ],
+                ];
+    }
+    public function getControllerConfig()
+    {
+        return [
+            'factories' => [
+                Controller\AuthController::class => function($container) {
+                    return new Controller\AuthController(
+                        $container->get(Model\AuthTable::class)
+                        );
                 },
                 ],
                 ];

@@ -40,9 +40,9 @@ class AuthTable
     public function saveAuth(Auth $auth)
     {
         $data = [
-            'userName' => $this->userName,
-            'email'  => $this->email,
-            'password'  => $this->password,
+            'userName' => $auth->userName,
+            'email'  => $auth->email,
+            'password'  => $auth->password,
         ];
         
         $id = (int) $auth->id;

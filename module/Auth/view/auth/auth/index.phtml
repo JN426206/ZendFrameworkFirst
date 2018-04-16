@@ -1,1 +1,45 @@
 <?php
+$title = 'Zaloguj się';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php if(isset($form) && $form !== NULL):
+    // This provides a default CSS class and placeholder text for the title element:
+    $userName = $form->get('userName');
+    $userName->setAttribute('class', 'form-control');
+    $userName->setAttribute('placeholder', 'Nazwa użytkownika');
+    // This provides a default CSS class and placeholder text for the artist element:
+    $password = $form->get('password');
+    $password->setAttribute('class', 'form-control');
+    $password->setAttribute('placeholder', 'Hasło');
+    // This provides CSS classes for the submit button:
+    $submit = $form->get('submit');
+    $submit->setAttribute('class', 'btn btn-primary');
+    $form->setAttribute('action', $this->url('auth', ['action' => 'index']));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <?php // Wrap the elements in divs marked as form groups, and render the
+          // label, element, and errors separately within ?>
+    <div class="form-group">
+        <?= $this->formLabel($userName) ?>
+        <?= $this->formElement($userName) ?>
+        <?= $this->formElementErrors()->render($userName, ['class' => 'help-block']) ?>
+    </div>
+    
+    <div class="form-group">
+        <?= $this->formLabel($password) ?>
+        <?= $this->formElement($password) ?>
+        <?= $this->formElementErrors()->render($password, ['class' => 'help-block']) ?>
+    </div>
+    
+    <?php
+    echo $this->formSubmit($submit);
+    echo $this->formHidden($form->get('id'));
+    echo $this->form()->closeTag();
+else:
+    if(isset($loged) && $loged)
+        echo "Zalogowano pomyślnie";
+endif;
+
+
