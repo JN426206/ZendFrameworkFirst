@@ -33,7 +33,6 @@ return [
     'service_manager' => [
         'factories' => [
             Model\UserTable::class => Model\Factory\UserTableFactory::class,
-            Model\UserTableGateway::class => Model\Factory\UserTableGatewayFactory::class,
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
             
