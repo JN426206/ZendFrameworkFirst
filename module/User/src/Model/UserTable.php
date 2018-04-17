@@ -31,6 +31,17 @@ class UserTable
         return $row;
     }
     
+    public function findOneByEmail($userName)
+    {
+        $rowset = $this->tableGateway->select(['userName' => $userName]);
+        $row = $rowset->current();
+        if (! $row) {
+            return null;
+        }
+        
+        return (array) $row;        
+    }
+    
     public function getUser($id)
     {
         $id = (int) $id;

@@ -1,6 +1,7 @@
 <?php
 namespace User;
 
+use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
 return [
@@ -8,10 +9,31 @@ return [
     'controllers' => [
         'factories' => [
             Controller\UserController::class => Controller\Factory\UserControllerFactory::class,
+            Controller\AuthController::class => Controller\Factory\AuthControllerFactory::class,
         ],
     ],
     'router' => [
-        'routes' => [
+        'routes' => [            
+            'login' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/login',
+                    'defaults' => [
+                        'controller' => Controller\AuthController::class,
+                        'action'     => 'login',
+                    ],
+                ],
+            ],
+            'logout' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/logout',
+                    'defaults' => [
+                        'controller' => Controller\AuthController::class,
+                        'action'     => 'logout',
+                    ],
+                ],
+            ],
             'user' => [
                 'type'    => 'Literal',
                 'options' => [
@@ -31,7 +53,8 @@ return [
         ],
     ],    
     'service_manager' => [
-        'factories' => [
+        'factories' => [            
+            \Zend\Authentication\AuthenticationService::class => Service\Factory\AuthenticationServiceFactory::class,
             Model\UserTable::class => Model\Factory\UserTableFactory::class,
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
