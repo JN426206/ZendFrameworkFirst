@@ -43,7 +43,9 @@
                             ->setMaxDepth(0)
                             ->setUlClass('nav navbar-nav') ?>
                 </div>
-                <?= $this->escapeHtml($this->identity()) ?>
+                <?php if($this->identity()!=null): ?>
+                	<a href="<?=$this->url('logout', []);?>">Wyloguj <?=$this->identity()?></a>
+                <?php endif;?>
             </div>
         </nav>
         <div class="container"> 

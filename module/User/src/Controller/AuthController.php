@@ -55,7 +55,6 @@ class AuthController extends AbstractActionController
             $form->setData($data);
             // Validate form
             if($form->isValid()) {
-                echo "Is valid";
                 // Get filtered and validated data
                 $data = $form->getData();
                 // Perform login attempt.

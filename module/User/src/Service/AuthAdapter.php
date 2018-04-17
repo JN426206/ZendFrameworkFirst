@@ -51,8 +51,7 @@ class AuthAdapter implements AdapterInterface
         $userRow = $this->userTable->findOneByEmail($this->userName);
         $user = new User();
         $user->exchangeArray($userRow);
-        
-        echo "User: ".$user->userName;
+       
         
         // If there is no such user, return 'Identity Not Found' status.
         if ($user == null) {
