@@ -39,7 +39,7 @@ class AuthController extends AbstractActionController
         // the 'Admin' user.
         //$this->userTable->createAdminUserIfNotExists();
         
-        if($this->authManager->getIdentity()!=null) 
+        if($this->identity()!=null)
             return $this->redirect()->toRoute('home');
         
         // Create login form
@@ -62,9 +62,9 @@ class AuthController extends AbstractActionController
                 $result = $this->authManager->login($data['userName'], $data['password']);
                 // Check result.
                 if ($result->getCode() == Result::SUCCESS) {
-                    
                     // Get redirect URL.
-                    $redirectUrl = $this->params()->fromPost('redirect_url', '');
+                    //$redirectUrl = $this->params()->fromPost('redirect_url', '');
+                    $redirectUrl = $data['redirect_url'];
                     if (!empty($redirectUrl)) {
                         // The below check is to prevent possible redirect attack
                         // (if someone tries to redirect user to another domain).
