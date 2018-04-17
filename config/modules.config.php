@@ -31,4 +31,5 @@ return [
     'Application',
     'Album',
     'Blog',
+    'User',
 ];
