@@ -46,6 +46,13 @@ class LoginForm extends Form
             ],
         ]);      
         
+        
+        // Add "redirect_url" field
+        $this->add([
+            'type'  => 'hidden',
+            'name' => 'redirect_url'
+        ]);
+        
         // Add the Submit button
         $this->add([
             'type'  => 'submit',
@@ -88,6 +95,24 @@ class LoginForm extends Form
                         'min' => 3,
                         'max' => 64
                     ],
+                ],
+            ],
+        ]);
+        
+        // Add input for "redirect_url" field
+        $inputFilter->add([
+            'name'     => 'redirect_url',
+            'required' => false,
+            'filters'  => [
+                ['name'=>'StringTrim']
+            ],
+            'validators' => [
+                [
+                    'name'    => 'StringLength',
+                    'options' => [
+                        'min' => 0,
+                        'max' => 2048
+                    ]
                 ],
             ],
         ]);

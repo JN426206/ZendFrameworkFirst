@@ -32,6 +32,8 @@ $form->get('password')->setAttributes([
             <?= $this->formElement($form->get('userName')); ?>
             <?= $this->formLabel($form->get('password')); ?>
             <?= $this->formElement($form->get('password')); ?>
+            
+			<?= $this->formElement($form->get('redirect_url')); ?>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div>
